@@ -1,0 +1,34 @@
+<p>formarrytutorial works!</p>
+<form [formGroup]="skillsForm" (ngSubmit)="onSubmit()">
+    
+    <div><p>
+        <label>Name</label>
+        <input type="text" id="name" formControlName="name">
+
+    </p>
+</div>
+    Skills
+
+    <div formArrayName="skills">
+        <div *ngFor="let skill of skills.controls; let i=index">
+            <div [formGroupName]="i">
+                {{i}}
+
+                skill
+                <input type="text" formControlName="skill">
+                Experience:
+                <input type="text" formControlName="exp">
+
+                <button (click)="removeSkill(i)">Remove</button>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+
+</form>
+<p>
+    <button type="button" (click)="addSkills()">Add</button>
+</p>
+{{this.skillsForm.value | json}}
